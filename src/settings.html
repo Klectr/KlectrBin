@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>KlectrSettings</title>
+  <script src="https://unpkg.com/htmx.org@2.0.0"
+    integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<!--  Container-->
+
+<body class="container mx-auto max-w-6xl px-4 p-2 bg-gray-900 flex flex-col gap-2">
+  <!--  HEADER -->
+  <header class="flex justify-center ">
+    <div class="w-full max-w-6xl flex justify-between">
+      <h1 class="font-bold text-white" onclick="goBackToHome()">Klectr<small class="text-blue-500">Bin</small></h1>
+    </div>
+  </header>
+
+  <hr class="border-gray-700">
+
+  <!--  MAIN-->
+  <main class="container m-auto max-w-6xl mb-8 flex flex-col gap-4">
+
+  </main>
+
+  <hr class="border-gray-700">
+
+  <footer class="flex justify-between">
+    <p class="text-sm text-gray-500 ">
+      &copy; 2024 Klectr. All rights reserved.
+    </p>
+    <a href="https://tristonarmstrong.com" class="text-sm text-gray-500 hover:text-blue-500">[ about us ]</a>
+  </footer>
+</body>
+
+<script type="text/javascript">
+  function goBackToHome() {
+    window.location = "/"
+  }  
+</script>
+
+</html>

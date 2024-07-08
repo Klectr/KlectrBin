@@ -14,7 +14,7 @@ async fn retrieve(
     Path(id): Path<i32>,
     State(state): State<MyState>,
 ) -> Result<impl IntoResponse, impl IntoResponse> {
-    match sqlx::query_as::<_, Paste>("SELECT * FROM todos WHERE id = $1")
+    match sqlx::query_as::<_, Paste>("SELECT * FROM pastes WHERE id = $1")
         .bind(id)
         .fetch_one(&state.pool)
         .await
@@ -41,8 +41,8 @@ async fn add(
     }
 }
 
-async fn send_index() -> Html<String> {
-    let path = format!("{}/{}/{}", env!("CARGO_MANIFEST_DIR"), "src", "index.html");
+async fn send_html(file_name: String) -> Html<String> {
+    let path = format!("{}/{}/{}", env!("CARGO_MANIFEST_DIR"), "src", file_name);
     let html = fs::read_to_string(path).expect("oof");
     Html(html)
 }
@@ -61,7 +61,8 @@ async fn main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_axum::Shut
 
     let state = MyState { pool };
     let router = Router::new()
-        .route("/", get(send_index))
+        .route("/", get(|| send_html("index.html".to_string())))
+        .route("/settings", get(|| send_html("settings.html".to_string())))
         .route("/paste", post(add))
         .route("/pastes/:id", get(retrieve))
         .with_state(state);

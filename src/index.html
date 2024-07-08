@@ -14,47 +14,87 @@
 
 <!--  Container-->
 
-<body class="container mx-auto max-w-6xl">
+<body class="container mx-auto max-w-6xl px-4 p-2 bg-gray-900 flex flex-col gap-2">
   <!--  HEADER -->
-  <header class="border-b-2 flex justify-center mb-4">
-    <div class="px-2 py-2 w-full max-w-6xl ">
-      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Klectr<small class="text-blue-500">Bin</small></h1>
+  <header class="flex justify-center ">
+    <div class="w-full max-w-6xl flex justify-between">
+      <h1 class="font-bold text-white">Klectr<small class="text-blue-500">Bin</small></h1>
+      <div>
+        <a class="text-sm text-gray-500 hover:text-blue-500" href="settings">[ settings ]</a>
+      </div>
     </div>
   </header>
 
+  <hr class="border-gray-700">
+
   <!--  MAIN-->
-  <main class="container m-auto max-w-6xl mb-8">
-    <div class="rounded-lg bg-gray-200 lg:col-span-2">
-      <div class="rounded-lg border border-gray-200 shadow-sm">
-        <form hx-post="/paste">
-          <div>
-            <input name='title' id='title' placeholder="Put title here..."
-              class="border-none p-2 w-full focus:outline-none" />
+  <main class="container m-auto max-w-6xl mb-8 flex flex-col gap-4">
+    <div>
+      <h1 class="text-white font-bold">What is KlectrBin?</h1>
+      <p class="text-gray-400">KlectrBin is your one-stop shop for storing anything in text form. Need a quick place to
+        paste code snippets,
+        brainstorm ideas, or jot down notes? KlectrBin makes it easy to capture and organize your thoughts. From syntax
+        highlighting for programmers to a clean and user-friendly interface, KlectrBin helps you get the most out of
+        your text.</p>
+    </div>
+
+    <hr class="border-gray-700">
+
+
+
+    <form hx-post="/paste">
+      <div class="rounded lg:col-span-2 gap-2 flex-col flex">
+        <div class="flex gap-2">
+          <div class="flex flex-col">
+            <label class="text-gray-400">type: </label>
+            <select name="type" class="bg-gray-700 text-gray-200 px-2 py-1 rounded">
+              <option>text</option>
+              <option>javascript</option>
+              <option>rust</option>
+              <option>markdown</option>
+              <option>html</option>
+            </select>
           </div>
+
+          <div class="flex flex-col">
+            <label class="text-gray-400">destroy: </label>
+            <select name="type" class="bg-gray-700 text-gray-200 px-2 py-1 rounded">
+              <option>after read</option>
+              <option>1 minute</option>
+              <option>5 minutes</option>
+              <option>10 minutes</option>
+            </select>
+          </div>
+        </div>
+        <div class="rounded shadow-sm">
+          <input name='title' id='title' placeholder="Put title here..."
+            class="rounded-t border-none p-2 w-full focus:outline-none bg-gray-700 text-white" />
           <textarea name='content' id="content"
-            class="w-full resize-y border-none align-top sm:text-sm p-2 bg-gray-50 min-h-fit focus:outline-none"
+            class="rounded-b text-white w-full resize-y border-none align-top sm:text-sm p-2 bg-gray-50 min-h-fit focus:outline-none bg-gray-800"
             rows="16" placeholder="Paste your stuff here..."></textarea>
 
-          <div class="flex items-center justify-end gap-2 bg-white p-3">
-            <button type="button" onclick="handleClearClick()"
-              class="rounded bg-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 hover:text-gray-600">
+          <div class="flex items-center justify-end gap-2 bg-gray-900 p-3">
+            <button type="button" onclick="handleClearClick()" class="text-sm text-gray-500 hover:text-blue-500">
               Clear
             </button>
-
-            <button type="submit"
-              class="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700">
-              Submit
-            </button>
+            <p class="text-sm text-gray-500 hover:text-blue-500">/
+            <p>
+              <button type="submit" class="text-sm text-gray-500 hover:text-blue-500">
+                Submit
+              </button>
           </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   </main>
 
-  <footer class="border-t-2">
-    <p class="mt-2 text-center text-sm text-gray-500 ">
-      Copyright &copy; 2024. All rights reserved.
+  <hr class="border-gray-700">
+
+  <footer class="flex justify-between">
+    <p class="text-sm text-gray-500 ">
+      &copy; 2024 Klectr. All rights reserved.
     </p>
+    <a href="https://tristonarmstrong.com" class="text-sm text-gray-500 hover:text-blue-500">[ about us ]</a>
   </footer>
 </body>
 
@@ -65,6 +105,10 @@
     textArea.value = ""
     titleInput.value = ""
   }
+</script>
+
+<script type="text/javascript">
+
 </script>
 
 </html>
