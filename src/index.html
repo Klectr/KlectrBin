@@ -98,6 +98,7 @@
   </footer>
 </body>
 
+<!-- form logic script -->
 <script type="text/javascript">
   function handleClearClick() {
     const textArea = document.querySelector("#content")
@@ -107,8 +108,15 @@
   }
 </script>
 
+<!-- authentication script -->
 <script type="text/javascript">
-
+  function handleCookie() {
+    let cookies = document.cookie;
+    let uuidCookie = cookies.split(";")?.[0]
+    if (uuidCookie) return
+    document.cookie = `uuid=${crypto.randomUUID()};`
+  }
+  handleCookie()
 </script>
 
 </html>
