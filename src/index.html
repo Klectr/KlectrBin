@@ -44,31 +44,28 @@
 
     <form hx-post="/paste">
       <div class="rounded lg:col-span-2 gap-2 flex-col flex">
-        <div class="flex gap-2">
-          <div class="flex flex-col">
-            <label class="text-gray-400">type: </label>
-            <select name="type" class="bg-gray-700 text-gray-200 px-2 py-1 rounded">
-              <option>text</option>
-              <option>javascript</option>
-              <option>rust</option>
-              <option>markdown</option>
-              <option>html</option>
-            </select>
-          </div>
 
-          <div class="flex flex-col">
-            <label class="text-gray-400">destroy: </label>
-            <select name="type" class="bg-gray-700 text-gray-200 px-2 py-1 rounded">
-              <option>after read</option>
-              <option>1 minute</option>
-              <option>5 minutes</option>
-              <option>10 minutes</option>
-            </select>
-          </div>
-        </div>
         <div class="rounded shadow-sm">
-          <input name='title' id='title' placeholder="Put title here..."
-            class="rounded-t border-none p-2 w-full focus:outline-none bg-gray-700 text-white" />
+          <div class="flex justify-between bg-gray-700 rounded-t p-1">
+            <input name='title' id='title' placeholder="Put title here..."
+              class="bg-gray-700 rounded-t border-none  text-white hover:border-none" />
+            <div class="flex gap-2">
+              <select name="type" class="bg-gray-600 text-gray-200 px-2 py-1 rounded">
+                <option>text</option>
+                <option>javascript</option>
+                <option>rust</option>
+                <option>markdown</option>
+                <option>html</option>
+              </select>
+
+              <select name="type" class="bg-gray-600 text-gray-200 px-2 py-1 rounded">
+                <option>after read</option>
+                <option>1 minute</option>
+                <option>5 minutes</option>
+                <option>10 minutes</option>
+              </select>
+            </div>
+          </div>
           <textarea name='content' id="content"
             class="rounded-b text-white w-full resize-y border-none align-top sm:text-sm p-2 bg-gray-50 min-h-fit focus:outline-none bg-gray-800"
             rows="16" placeholder="Paste your stuff here..."></textarea>
@@ -117,6 +114,19 @@
     document.cookie = `uuid=${crypto.randomUUID()};`
   }
   handleCookie()
+</script>
+
+<script type="module">
+  // be sure to specify the exact version
+  import {codeToHtml} from 'https://esm.sh/shiki@1.0.0'
+  // or
+  // import { codeToHtml } from 'https://esm.run/shiki@1.0.0'
+
+  const foo = document.getElementById('foo')
+  foo.innerHTML = await codeToHtml('console.log("Hi, Shiki on CDN :)")', {
+    lang: 'js',
+    theme: 'rose-pine'
+  })
 </script>
 
 </html>
